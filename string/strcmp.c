@@ -5,5 +5,5 @@ int strcmp(const char* a, const char* b) {
   while (a[i] && a[i] == b[i]) {
     i++;
   }
-  return a[i] - b[i];
+  return (unsigned char) a[i] - (unsigned char) b[i];
 }
