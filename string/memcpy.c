@@ -1,10 +1,10 @@
 #include <stddef.h>
 
-void* memcpy(void* restrict dstptr, const void* restrict srcptr, size_t len) {
-  unsigned char* dst = dstptr;
+void* memcpy(void* restrict destptr, const void* restrict srcptr, size_t len) {
+  unsigned char* dest = destptr;
   const unsigned char* src = srcptr;
   for (size_t i = 0; i < len; i++) {
-    dst[i] = src[i];
+    dest[i] = src[i];
   }
-  return dstptr;
+  return destptr;
 }
