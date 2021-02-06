@@ -1,4 +1,5 @@
 // Taken from https://github.com/nothings/stb/blob/master/stb_sprintf.h (314d0a6f9af5af27e585336eecea333e95c5a2d8)
+#ifndef __clang_analyzer__
 #define STB_SPRINTF_DECORATE(name) name
 #define STB_SPRINTF_IMPLEMENTATION
 
@@ -1861,3 +1862,4 @@ ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ------------------------------------------------------------------------------
 */
+#endif
