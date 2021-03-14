@@ -2,6 +2,7 @@
 #ifndef __clang_analyzer__
 #define STB_SPRINTF_DECORATE(name) name
 #define STB_SPRINTF_IMPLEMENTATION
+#define STB_SPRINTF_NOUNALIGNED
 
 // stb_sprintf - v1.09 - public domain snprintf() implementation
 // originally by Jeff Roberts / RAD Game Tools, 2015/10/20
