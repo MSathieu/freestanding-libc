@@ -3,10 +3,10 @@
 #include <stddef.h>
 
 int getchar(void);
-int printf(const char* restrict, ...);
-int putchar(int);
-int snprintf(char* restrict, size_t, const char* restrict, ...);
-int sprintf(char* restrict, const char* restrict, ...);
-int vprintf(const char* restrict, va_list);
-int vsnprintf(char* restrict, size_t, const char* restrict, va_list);
-int vsprintf(char* restrict, const char* restrict, va_list);
+int printf(const char* restrict format, ...);
+int putchar(int c);
+int snprintf(char* restrict buffer, size_t size, const char* restrict format, ...);
+int sprintf(char* restrict buffer, const char* restrict format, ...);
+int vprintf(const char* restrict format, va_list args);
+int vsnprintf(char* restrict buffer, size_t size, const char* restrict format, va_list args);
+int vsprintf(char* restrict buffer, const char* restrict format, va_list args);
