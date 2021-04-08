@@ -1,8 +1,27 @@
 .global memset
 memset:
-  push %rdi
+  mov %rdi, %r8
+  movzb %sil, %rsi
   mov %rsi, %rax
+  shl $8, %rsi
+  or %rsi, %rax
+  shl $8, %rsi
+  or %rsi, %rax
+  shl $8, %rsi
+  or %rsi, %rax
+  shl $8, %rsi
+  or %rsi, %rax
+  shl $8, %rsi
+  or %rsi, %rax
+  shl $8, %rsi
+  or %rsi, %rax
+  shl $8, %rsi
+  or %rsi, %rax
   mov %rdx, %rcx
+  shr $3, %rcx
+  rep stosq
+  mov %rdx, %rcx
+  and $7, %rcx
   rep stosb
-  pop %rax
+  mov %r8, %rax
   ret
