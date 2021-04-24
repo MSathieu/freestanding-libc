@@ -550,10 +550,10 @@ STBSP__PUBLICDEF int STB_SPRINTF_DECORATE(vsprintfcb)(STBSP_SPRINTFCB* callback,
       }
       n = 0xffffffff;
       if (pr >= 0) {
-        n = (stbsp__uint32)(sn - s);
+        n = (stbsp__uint32) (sn - s);
         if (n >= (stbsp__uint32) pr)
           goto ld;
-        n = ((stbsp__uint32)(pr - n)) >> 2;
+        n = ((stbsp__uint32) (pr - n)) >> 2;
       }
       while (n) {
         stbsp__uint32 v = *(stbsp__uint32*) sn;
@@ -565,7 +565,7 @@ STBSP__PUBLICDEF int STB_SPRINTF_DECORATE(vsprintfcb)(STBSP_SPRINTFCB* callback,
       goto lchk;
     ld:
 
-      l = (stbsp__uint32)(sn - s);
+      l = (stbsp__uint32) (sn - s);
       // clamp to precision
       if (l > (stbsp__uint32) pr)
         l = pr;
@@ -837,7 +837,7 @@ STBSP__PUBLICDEF int STB_SPRINTF_DECORATE(vsprintfcb)(STBSP_SPRINTFCB* callback,
           *s++ = '0';
           --i;
         }
-        if ((stbsp__int32)(l + n) > pr)
+        if ((stbsp__int32) (l + n) > pr)
           l = pr - n;
         i = l;
         while (i) {
@@ -947,7 +947,7 @@ STBSP__PUBLICDEF int STB_SPRINTF_DECORATE(vsprintfcb)(STBSP_SPRINTFCB* callback,
 
     flt_lead:
       // get the length that we copied
-      l = (stbsp__uint32)(s - (num + 64));
+      l = (stbsp__uint32) (s - (num + 64));
       s = num + 64;
       goto scopy;
 #endif
@@ -1013,7 +1013,7 @@ STBSP__PUBLICDEF int STB_SPRINTF_DECORATE(vsprintfcb)(STBSP_SPRINTFCB* callback,
       for (;;) {
         *--s = h[n64 & ((1 << (l >> 8)) - 1)];
         n64 >>= (l >> 8);
-        if (!((n64) || ((stbsp__int32)((num + STBSP__NUMSZ) - s) < pr)))
+        if (!((n64) || ((stbsp__int32) ((num + STBSP__NUMSZ) - s) < pr)))
           break;
         if (fl & STBSP__TRIPLET_COMMA) {
           ++l;
@@ -1024,9 +1024,9 @@ STBSP__PUBLICDEF int STB_SPRINTF_DECORATE(vsprintfcb)(STBSP_SPRINTFCB* callback,
         }
       };
       // get the tens and the comma pos
-      cs = (stbsp__uint32)((num + STBSP__NUMSZ) - s) + ((((l >> 4) & 15)) << 24);
+      cs = (stbsp__uint32) ((num + STBSP__NUMSZ) - s) + ((((l >> 4) & 15)) << 24);
       // get the length that we copied
-      l = (stbsp__uint32)((num + STBSP__NUMSZ) - s);
+      l = (stbsp__uint32) ((num + STBSP__NUMSZ) - s);
       // copy it
       goto scopy;
 
@@ -1069,7 +1069,7 @@ STBSP__PUBLICDEF int STB_SPRINTF_DECORATE(vsprintfcb)(STBSP_SPRINTFCB* callback,
         // do in 32-bit chunks (avoid lots of 64-bit divides even with constant denominators)
         char* o = s - 8;
         if (n64 >= 100000000) {
-          n = (stbsp__uint32)(n64 % 100000000);
+          n = (stbsp__uint32) (n64 % 100000000);
           n64 /= 100000000;
         } else {
           n = (stbsp__uint32) n64;
@@ -1111,7 +1111,7 @@ STBSP__PUBLICDEF int STB_SPRINTF_DECORATE(vsprintfcb)(STBSP_SPRINTFCB* callback,
       stbsp__lead_sign(fl, lead);
 
       // get the length that we copied
-      l = (stbsp__uint32)((num + STBSP__NUMSZ) - s);
+      l = (stbsp__uint32) ((num + STBSP__NUMSZ) - s);
       if (l == 0) {
         *--s = '0';
         l = 1;
@@ -1184,7 +1184,7 @@ STBSP__PUBLICDEF int STB_SPRINTF_DECORATE(vsprintfcb)(STBSP_SPRINTFCB* callback,
         // copy leading zeros
         c = cs >> 24;
         cs &= 0xffffff;
-        cs = (fl & STBSP__TRIPLET_COMMA) ? ((stbsp__uint32)(c - ((pr + cs) % (c + 1)))) : 0;
+        cs = (fl & STBSP__TRIPLET_COMMA) ? ((stbsp__uint32) (c - ((pr + cs) % (c + 1)))) : 0;
         while (pr > 0) {
           stbsp__cb_buf_clamp(i, pr);
           pr -= i;
@@ -1468,9 +1468,9 @@ static stbsp__int32 stbsp__real_to_parts(stbsp__int64* bits, stbsp__int32* expo,
   STBSP__COPYFP(b, d);
 
   *bits = b & ((((stbsp__uint64) 1) << 52) - 1);
-  *expo = (stbsp__int32)(((b >> 52) & 2047) - 1023);
+  *expo = (stbsp__int32) (((b >> 52) & 2047) - 1023);
 
-  return (stbsp__int32)((stbsp__uint64) b >> 63);
+  return (stbsp__int32) ((stbsp__uint64) b >> 63);
 }
 
 static double const stbsp__bot[23] = {
@@ -1572,15 +1572,15 @@ static stbsp__uint64 const stbsp__powten[20] = {
     ol = ((ahi * bhi - oh) + ahi * blo + alo * bhi) + alo * blo; \
   }
 
-#define stbsp__ddtoS64(ob, xh, xl)        \
-  {                                       \
-    double ahi = 0, alo, vh, t;           \
-    ob = (stbsp__int64) ph;               \
-    vh = (double) ob;                     \
-    ahi = (xh - vh);                      \
-    t = (ahi - xh);                       \
-    alo = (xh - (ahi - t)) - (vh + t);    \
-    ob += (stbsp__int64)(ahi + alo + xl); \
+#define stbsp__ddtoS64(ob, xh, xl)         \
+  {                                        \
+    double ahi = 0, alo, vh, t;            \
+    ob = (stbsp__int64) ph;                \
+    vh = (double) ob;                      \
+    ahi = (xh - vh);                       \
+    t = (ahi - xh);                        \
+    alo = (xh - (ahi - t)) - (vh + t);     \
+    ob += (stbsp__int64) (ahi + alo + xl); \
   }
 
 #define stbsp__ddrenorm(oh, ol) \
@@ -1669,8 +1669,8 @@ static stbsp__int32 stbsp__real_to_str(char const** start, stbsp__uint32* len, c
 
   d = value;
   STBSP__COPYFP(bits, d);
-  expo = (stbsp__int32)((bits >> 52) & 2047);
-  ng = (stbsp__int32)((stbsp__uint64) bits >> 63);
+  expo = (stbsp__int32) ((bits >> 52) & 2047);
+  ng = (stbsp__int32) ((stbsp__uint64) bits >> 63);
   if (ng)
     d = -d;
 
@@ -1772,7 +1772,7 @@ static stbsp__int32 stbsp__real_to_str(char const** start, stbsp__uint32* len, c
     char* o = out - 8;
     // do the conversion in chunks of U32s (avoid most 64-bit divides, worth it, constant denomiators be damned)
     if (bits >= 100000000) {
-      n = (stbsp__uint32)(bits % 100000000);
+      n = (stbsp__uint32) (bits % 100000000);
       bits /= 100000000;
     } else {
       n = (stbsp__uint32) bits;
