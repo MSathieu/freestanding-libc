@@ -15,4 +15,5 @@ int strncmp(const char* a, const char* b, size_t size);
 char* strncpy(char* restrict dest, const char* restrict src, size_t size);
 size_t strlen(const char* str);
 size_t strspn(const char* str, const char* chars);
+char* strstr(const char* a, const char* b);
 char* strtok(char* restrict new_str, const char* restrict sep);
